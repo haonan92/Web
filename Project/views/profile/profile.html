@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
+
+
+<body>
+    <h1>This is {{user.username}} 's Profile Page</h1>
+    <!--Button for like a user-->
+    <div>
+        <button ng-show="user.username !== currentUser.username" ng-click="followUser()" class="btn btn-info pull-right" id="submit-comment-button">
+            Follow This User
+        </button>
+    </div>
+       
+    
+    <!--show stuffs that you like-->
+    <h2>This is the stuffs you liked</h2>
+    <table class="table table-striped">
+        <tbody>
+            <tr ng-repeat="stuff in user.stuffs">
+
+                <td>
+                    <a href="#detail/{{stuff.itemId}}">
+                        {{stuff.name}}
+                    </a>
+                </td>
+                <td>{{stuff.customerRating}}</td>
+                <td>{{stuff.salePrice}}</td>
+
+                <td>
+                    <button ng-show="user.username == currentUser.username" class="btn btn-danger pull-right" ng-click="Removestuff($index)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+    <!--Type user name for searching a user-->
+    <div class="input-group">
+        <input ng-show="user.username == currentUser.username" ng-model="person" type="text" class="form-control" placeholder="Type the User you want to Follow">
+        
+        <button ng-show="user.username == currentUser.username" ng-click="follow()" class="btn btn-danger" type="button">Add This User</button>
+       
+    </div>
+
+
+    <!--represent for following a user-->
+    <div class="col-lg-3">
+        <br />
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="text-center panel-title text-capitalize">{{user.username}}'s Following</h3>
+            </div>
+            <div class="panel-body">
+                <li ng-repeat="following in user.followings track by $index">
+                    <a class="btn btn-link" ng-click="checkFollow(following)">{{following}}</a>
+                    <button ng-show="user.username == currentUser.username"  class="btn btn-danger pull-right" ng-click="RemoveFollowing($index)">
+                         UnFollow
+
+                    </button>
+                    <hr />
+                </li>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <br />
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="text-center panel-title text-capitalize">{{user.username}}'s Follower</h3>
+            </div>
+            <div class="panel-body">
+                <li ng-repeat="follower in user.followers track by $index">
+                    <a class="btn btn-link" ng-click="checkFollow(follower)">{{follower}}</a>
+                    <button ng-show="user.username == currentUser.username"  class="btn btn-danger pull-right" ng-click="RemoveFollower($index)">
+                        Remove Follower
+                    </button>
+                    <hr />
+                </li>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

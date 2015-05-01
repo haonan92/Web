@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<html lang="en">
+<head>
+    <title>LeftRightHandsFashion</title>
+
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/carousel.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+   
+   
+    <script src="js/jquery-1.11.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/angular.js"></script> 
+    <script src="js/angular-route.js"></script>
+    <script src="js/app.js"></script>
+    
+    
+    <script src="views/login/login.js"></script>
+    <script src="views/register/register.js"></script>
+
+    <script src="views/home/home.js"></script>
+    <script src="views/detail/detail.js"></script>
+    <script src="views/profile/profile.js"></script>
+
+    <!--BootStrap-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  
+</head>
+<body ng-app="Passport">
+    <div class="container">
+        <nav >
+            <div class="header clearfix">
+                <nav ng-controller="NavCtrl">
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation"><a href="#login" ng-show="!currentUser">Login</a></li>
+                        <li role="presentation"><a href="#register" ng-show="!currentUser">Register</a></li>
+                        <li role="presentation"><a href="#logout" ng-show="currentUser" ng-click="logout()">Logout</a></li>
+                        <li role="presentation"><a href="#profile/{{currentUser.username}}" ng-show="currentUser">Profile</a></li>
+                        
+                    </ul>
+            
+                </nav>
+                <h3 role="presentation" class="text-muted"><a href="#home"><img src="logo.png" /></a></h3>
+            </div>      
+        </nav>
+        <div ng-view></div>
+    </div>
+</body>
+</html>

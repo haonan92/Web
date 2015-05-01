@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+
+<!--stuff detail-->
+<body>
+    <table class="table table-striped">
+        <tbody>
+            <tr ng-repeat="stuff in stuffs.items">
+                <td>{{stuff.name}}</td>
+                <td>{{stuff.itemId}}</td>
+                <td>{{stuff.salePrice}}</td>
+                <td>{{stuff.shortDescription}}</td>
+                <td><img src="{{stuff.thumbnailImage}}" /></td>
+
+                <td ng-show="currentUser">
+
+                    <button ng-show="!isLike " ng-click="addToFavorites(stuff)" class="btn btn-warning pull-right pull-right">
+                        <span class="glyphicon glyphicon-star"></span>
+                    </button>
+                    <button ng-show="isLike " ng-click="Removestuff($index)" class="btn btn-danger pull-right pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+    <!--Who likes this item-->
+    <h2>Who Comments on this item</h2>
+    
+    
+    <table class="table table-striped">
+        <tbody>
+            <tr ng-repeat="stuff in favorites">
+                <td>{{stuff.name}}</td>
+                <td><img src="{{stuff.thumbnailImage}}" /></td>
+
+                <td>
+                    <button ng-click="removeTitle(stuff)" class="btn btn-danger pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+    
+     <hr />
+  
+    
+      <!-- user comments -->
+    <div class="col-lg-12">
+        <div class="col-lg-12" id="comments-header">
+            Comments
+        </div>
+
+        <div class="user-comments col-lg-12">
+            <div ng-model="stuffComments" ng-repeat="comment in stuffComments">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="comment-info">
+                            <a href="#/profile/{{comment.username}}">
+                                {{comment.username}}
+                            </a>
+                              on {{comment.date}}
+                         </div>
+                        <div class="comment-body">
+                            {{comment.comment}}
+                        </div>
+                        <div ng-if="currentUser.username == comment.username">
+                            <button ng-click="remove(comment._id)" class="btn btn-info pull-right">
+                                Remove Comment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Comment area-->
+    <div id="user-comment-area" ng-repeat="stuff in stuffs.items">
+        <div ng-if="currentUser">
+            <textarea ng-model="currentComment" class="form-control" rows="3" id="textArea"></textarea>
+            <button ng-click="submitstuffComment(currentUser.username, stuff.itemId, currentComment)" class="btn btn-info pull-left" id="submit-comment-button">
+                Submit Comment
+            </button>
+        </div>
+        <div ng-if="!currentUser" id="register-message">
+            <a href="#login">Login</a> or <a href="#register">register</a>
+        </div>
+    </div>
+
+  
+
+</body>
+</html>
+

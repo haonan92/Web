@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--BootStrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <title>LeftRightHandsMarket</title>
+</head>
+
+
+<body>
+    <div class="container" >
+                <img src="images/market.jpg" />
+
+
+
+
+
+
+        <!--This represent the search bar-->
+        <div class="input-group">
+            <input ng-model="titleSearch" type="text" class="form-control" placeholder="search for...">
+            <span class="input-group-btn">
+                <button ng-click="searchTitle()" class="btn btn-success " type="button">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </span>
+        </div>
+        <table class="table table-striped">
+          
+            <tbody>
+                <tr ng-repeat="stuff in stuffs.items">
+                    <td>
+                        <a href="#detail/{{stuff.itemId}}">
+                        <h4 style="font-weight: bold" class="ng-binding">
+                            {{stuff.name}}
+                        </h4>
+                        </a>                    
+                    </td>
+                    <td>{{stuff.salePrice}}</td>      
+                    <td><img src="{{stuff.thumbnailImage}}" /></td>
+                       
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
